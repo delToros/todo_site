@@ -1,0 +1,36 @@
+{% include 'header.html' %}
+
+<form action="{{ url_for('home') }}" method="POST">
+  <h2>
+    <input class="hide_placeholder" type="text" name="goal" placeholder="Please type your goal">
+    <input type="submit" hidden />
+    </h2>
+</form>
+
+
+{% if not logged_in %}
+{% for goal in goals %}
+
+<p class="goals"><i class="fa-solid fa-angle-right"></i> <b>{{ goal }}</b>  <a class="delete-icon" href="{{url_for('delete', goal_id=goal.index(goal)) }}"><i class="fa-solid fa-xmark"></i></a></p>
+
+{% endfor %}
+{% else %}
+{% for goal in existing_goals %}
+
+<p class="goals"><i class="fa-solid fa-angle-right"></i> <b>{{ goal.goal }}</b>     <a class="delete-icon" href="{{url_for('delete', goal_id=goal.id) }}"><i class="fa-solid fa-xmark"></i></a></p>
+
+{% endfor %}
+
+{% endif %}
+
+
+
+</div> <!-- Inner row -->
+
+
+
+
+
+  </body>
+
+{% include 'footer.html' %}

@@ -1,0 +1,45 @@
+{% include 'header.html' %}
+
+  <!-- Outer container, full page width and height, red border -->
+<div class="container-fluid d-flex justify-content-center align-items-center">
+
+<!-- Inner row, half the width and height, centered, blue border -->
+<div class="row text-center d-flex align-items-center">
+
+<form action="{{ url_for('login') }}" method="POST">
+  <div class="mb-3">
+    <h1>Login</h1>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+          <div class="alert alert-info">
+              {{ message }}
+          </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+    {% if error %}
+    <div class="alert alert-warning">
+         {{ error }}
+    </div>
+   {% endif %}
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Jump In</button>
+</form>
+
+</div> <!-- Inner row -->
+</div> <!-- Outer container -->
+
+
+
+  </body>
+
+{% include 'footer.html' %}
